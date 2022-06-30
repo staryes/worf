@@ -142,6 +142,7 @@
 (require 'org-id)
 (require 'swiper)
 (require 'zoutline)
+(require 'hydra)
 
 (defgroup worf nil
   "Navigate Org-mode with plain keys."
