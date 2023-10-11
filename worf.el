@@ -652,7 +652,7 @@ When the chain is broken, the keyword is unset."
 
 (worf--set-change-switches "c" 'worf-change-mode)
 (worf--set-change-switches "f" 'worf-change-tree-mode)
-(worf--set-change-switches "s" 'worf-change-shift-mode)
+(worf--set-change-switches "i" 'worf-change-shift-mode)
 (worf--set-change-switches "r" 'worf-change-shiftcontrol-mode)
 
 ;; ——— Nouns: arrows ———————————————————————————————————————————————————————————
@@ -1780,9 +1780,9 @@ calling `self-insert-command'."
 
 (let ((map worf-mode-map))
   ;; ——— Global ———————————————————————————————
-  (define-key map "]" 'worf-backward)
+  (define-key map "[" 'worf-backward)
   (define-key map (kbd "M-o") 'worf-back-to-special)
-  (define-key map "[" 'worf-forward)
+  (define-key map "]" 'worf-forward)
   (define-key map "=" 'worf-symbolize)
   (define-key map (kbd "M-j") 'worf-meta-newline)
   ;; (define-key map "\C-j" 'hydra-worf-cj/body)
