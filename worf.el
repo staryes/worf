@@ -1749,7 +1749,7 @@ calling `self-insert-command'."
   (interactive)
   (when current-input-method
     (toggle-input-method))
-  (worf-backward))
+  (worf-back-to-heading))
 
 (defun worf-eval (&optional arg)
   "Eval the first source statement in the outline."
