@@ -1325,22 +1325,25 @@ This is accomplished by putting it at the start of `org-refile-history'."
 Refile:^^   _k_eep: %`org-refile-keep
 ----------------------------------
 _l_ast      _a_rchive
-_o_ther     _e_nd
-_h_ere      _g_td
-_t_asks
+_o_ther     _i_nbox
+_h_ere      _c_opy
+_b_eginning _e_nd
 "
   ("h" worf-refile-this)
-  ("t" worf-refile-tasks)
+  ;; ("t" worf-refile-tasks)
   ("T" (worf-refile-this 5))
   ("w" worf-refile-other-window)
   ("o" worf-refile-other)
   ("l" worf-refile-last)
   ("k" (setq org-refile-keep (not org-refile-keep))
-       :exit nil)
+   :exit nil)
+  ("b" worf-move-move-subtree-way-up)
   ("e" worf-move-move-subtree-way-down)
+  ("c" worf-refile-copy)
   ("A" (org-archive-subtree))
   ("a" worf-refile-archive)
-  ("g" worf-refile-gtd)
+  ("i" worf-refile-inbox)
+  ;; ("g" worf-refile-gtd)
   ("q" nil "quit"))
 
 (defvar worf-refile-archive-hook #'ignore
@@ -1352,6 +1355,19 @@ _t_asks
   (or (funcall worf-refile-archive-hook)
       (worf--refile-to-file (buffer-file-name) "Archive")))
 
+(defun worf-refile-inbox ()
+  "Refile the current heading to inbox heading in the current file."
+  (interactive)
+  (worf--refile-to-file (buffer-file-name) "inbox"))
+
+(defun worf-move-move-subtree-way-up ()
+  "\"Refile\" the item to the beginning of the parent subtree."
+  (interactive)
+  (save-excursion
+    (ignore-errors
+      (while t
+        (org-move-item-up 1)))))
+
 (defun worf-move-move-subtree-way-down ()
   "\"Refile\" the item to the end of the parent subtree."
   (interactive)
@@ -1359,6 +1375,14 @@ _t_asks
     (ignore-errors
       (while t
         (org-move-subtree-down 1)))))
+
+(defun worf-refile-copy ()
+  "Refile Copy"
+  (interactive)
+  (setq org-refile-keep t)
+  (worf-refile-this 1)
+  (setq org-refile-keep nil)
+  )
 
 (defhydra hydra-worf-cj (:color teal)
   "C-j"
