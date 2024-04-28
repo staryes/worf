@@ -1366,7 +1366,7 @@ _b_eginning _e_nd
   (save-excursion
     (ignore-errors
       (while t
-        (org-move-item-up 1)))))
+        (org-move-subtree-up 1)))))
 
 (defun worf-move-move-subtree-way-down ()
   "\"Refile\" the item to the end of the parent subtree."
