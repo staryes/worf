@@ -1172,7 +1172,8 @@ directory, the attachments will be moved."
   (interactive "p")
   (when (= arg 1)
     (setq arg 5))
-  (let ((org-refile-targets `((nil :maxlevel . ,arg))))
+  (let ((org-refile-targets `((nil :maxlevel . ,arg)))
+        (org-reverse-note-order t))
     (call-interactively 'org-refile))
   (save-buffer))
 
